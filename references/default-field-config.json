@@ -1,0 +1,110 @@
+{
+  "group_by": ["ad_id"],
+  "fields": [
+    {
+      "output": "AdId",
+      "name": "AdId",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["AdId", "ad_id", "Ad ID"]
+    },
+    {
+      "output": "profile_id",
+      "name": "ProfileId",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["ProfileId", "profile_id", "Profile ID"]
+    },
+    {
+      "output": "CampaignId",
+      "name": "CampaignId",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["CampaignId", "campaign_id", "Campaign ID"]
+    },
+    {
+      "output": "CampaignName",
+      "name": "CampaignName",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["CampaignName", "campaign_name", "Campaign Name"]
+    },
+    {
+      "output": "Headline",
+      "name": "AdName",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["AdName", "Headline", "headline", "Ad Name"]
+    },
+    {
+      "output": "Channel",
+      "name": "Channel",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["Channel", "channel", "ChannelName"]
+    },
+    {
+      "output": "source",
+      "name": "AccountName",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["AccountName", "Account Name", "source", "Source"]
+    },
+    {
+      "output": "brand",
+      "name": "Brand (Ads)",
+      "group": "DIMENSIONS",
+      "type": "string",
+      "aliases": ["Brand (Ads)", "brand", "Brand"]
+    },
+    {
+      "output": "Impressions",
+      "name": "Impressions",
+      "group": "PERFORMANCE",
+      "type": "integer",
+      "aliases": ["Impressions", "impressions"]
+    },
+    {
+      "output": "Clicks",
+      "name": "Clicks",
+      "group": "PERFORMANCE",
+      "type": "integer",
+      "aliases": ["Clicks", "clicks"]
+    },
+    {
+      "output": "Conversions",
+      "name": "Conversion",
+      "group": "PERFORMANCE",
+      "type": "number",
+      "aliases": ["Conversion", "Conversions", "conversion"]
+    },
+    {
+      "output": "CTR",
+      "name": "CTR",
+      "group": "PERFORMANCE",
+      "type": "number",
+      "aliases": ["CTR", "ctr"]
+    },
+    {
+      "output": "ImageUrl",
+      "name": "ImageUrl",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["ImageUrl", "image_url", "Image URL"]
+    },
+    {
+      "output": "Country",
+      "name": "Country",
+      "group": "DIMENSIONS",
+      "type": "string",
+      "aliases": ["Country", "country"]
+    },
+    {
+      "output": "AdTypeName",
+      "name": "AdTypeName",
+      "group": "ATTRIBUTES",
+      "type": "string",
+      "aliases": ["AdTypeName", "ad_type_name", "Ad Type Name"]
+    }
+  ]
+}

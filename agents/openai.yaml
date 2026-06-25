@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skai Skill"
+  short_description: "Analiza datos de performance en Skai"
+  default_prompt: "Use $skai-skill para leer datos de Skai y responder una pregunta analitica de performance."
