@@ -1,89 +1,93 @@
----
-name: skai-skill
-description: Consulta datos de Skai por API, exporta reportes de performance listos para analisis y responde preguntas de senior data analyst sobre ads, campaigns, brands, channels, comparativas entre periodos, drivers, outliers y checks de calidad. Use when Codex needs to leer datos directamente desde Skai, no solo enriquecer datasets con ImageUrl. Si no se especifica pais, asumir USA.
----
+# Skai Performance Analyst Skill
 
-# Skai Skill
+![Status](https://img.shields.io/badge/status-showcase_ready-2ea44f)
+![Domain](https://img.shields.io/badge/domain-paid_media_analytics-0969da)
+![Stack](https://img.shields.io/badge/stack-python_%7C_skai_api_%7C_performance_reporting-6f42c1)
 
-## Overview
+An AI-assisted performance reporting workflow for Skai data. It exports campaign, ad, creative, and media metrics into analyst-ready files, then guides reproducible business analysis such as drivers, outliers, period comparisons, and quality checks.
 
-Usa esta skill para leer datos de Skai desde la plataforma y convertirlos en un export analitico listo para responder preguntas de negocio y performance. Reutiliza el mismo acceso API que la skill `skai`, pero en lugar de hacer solo mapping de `ImageUrl`, prepara un reporte completo para analisis.
+## Why It Matters
 
-## Workflow
+Paid media teams need fast answers without losing analytical rigor. This skill operationalizes the path from platform API data to business-ready analysis: consistent field config, repeatable exports, metric recalculation rules, and outputs that can be inspected or reused.
 
-1. Confirmar la pregunta de negocio, el rango de fechas, el pais y si hace falta comparar contra otro periodo.
-2. Revisar [configuration.md](./skai-skill/references/configuration.md) si faltan credenciales o si necesitas cambiar campos.
-3. Usar por defecto [default-field-config.json](./skai-skill/references/default-field-config.json) para sacar un reporte a nivel `AdId`.
-4. Ejecutar [skai_report_export.py](./skai-skill/scripts/skai_report_export.py) para exportar datos de Skai.
-5. Cargar `skai_report_records` y contestar la pregunta con calculos reproducibles, no con intuicion.
-6. Si la pregunta es comparativa entre periodos, ejecutar el script dos veces y hacer el analisis local despues.
+| Business value | Technical value |
+| --- | --- |
+| Faster paid media diagnostics | Configurable Skai API export script |
+| Better explanation of performance shifts | Period comparison and driver-analysis workflow |
+| More reliable metric interpretation | Explicit rules for CTR, conversions, aggregation, and sample size |
+| Cleaner analyst handoff | CSV/JSON records plus run summary |
 
-## Quick Start
+## What It Can Do
 
-Comando base:
+- Export Skai performance data by date range and country.
+- Use configurable dimensions and metrics for account-specific schemas.
+- Generate current and prior-period datasets for comparison.
+- Filter video creatives or excluded brand groups when required.
+- Identify top ads, campaigns, sources, brands, and outliers.
+- Produce structured data quality checks for missing fields or suspicious records.
 
-```bash
-python3 ./skai-skill/scripts/skai_report_export.py \
-  --start-date 2026-04-01 \
-  --end-date 2026-04-30 \
-  --country ES \
-  --output-dir /tmp/skai-skill-es
+## Analysis Flow
+
+```mermaid
+flowchart TD
+    A["Business question"] --> B["Choose date range and country"]
+    B --> C["Load field configuration"]
+    C --> D["Export Skai records"]
+    D --> E["Apply filters and quality checks"]
+    E --> F["Recalculate metrics after aggregation"]
+    F --> G["Explain drivers and caveats"]
 ```
 
-Para comparar periodos:
+## Repository Structure
+
+```text
+.
+|-- SKILL.md
+|-- agents/openai.yaml
+|-- references/
+|   |-- analysis-playbook.md
+|   |-- configuration.md
+|   `-- default-field-config.json
+`-- scripts/skai_report_export.py
+```
+
+## Example Commands
 
 ```bash
-python3 ./skai-skill/scripts/skai_report_export.py \
+python3 scripts/skai_report_export.py \
   --start-date 2026-04-01 \
   --end-date 2026-04-30 \
   --country ES \
-  --output-dir /tmp/skai-skill-current
+  --output-dir /tmp/skai-current
 
-python3 ./skai-skill/scripts/skai_report_export.py \
+python3 scripts/skai_report_export.py \
   --start-date 2026-03-01 \
   --end-date 2026-03-31 \
   --country ES \
-  --output-dir /tmp/skai-skill-prior
+  --output-dir /tmp/skai-prior
 ```
-
-Si la pregunta debe seguir la misma convencion de la skill `skai` para excluir `EXCLUDED_BRAND`, anadir `--exclude-brand`. Si el analisis debe quedarse solo con creatividades no-video, anadir `--exclude-video`.
 
 ## Question Types
 
-Usar esta skill para preguntas como:
+| Question | Example output |
+| --- | --- |
+| What drove a CTR drop? | Campaign, brand, source, and creative-level contribution |
+| Which ads are outliers? | High-impression, low-CTR or high-cost records |
+| What changed vs prior period? | Absolute and relative deltas with caveats |
+| Is the export analytically usable? | Missing-field checks and coverage summary |
 
-- que campaigns, brands o sources explican una caida de CTR
-- top ads o campaigns por volumen, clicks, conversions o CTR
-- comparativas entre paises, channels o brands dentro de un periodo
-- outliers con muchas impresiones y bajo CTR
-- chequeos de calidad, por ejemplo filas sin `Country`, `AdId` o `CampaignId`
-- enriquecimiento de una investigacion posterior con `ImageUrl` y metadata de creatividad
+## Design Principles
 
-## Analysis Rules
+- Recalculate derived metrics after aggregation.
+- Never average row-level CTR as a shortcut.
+- Flag small samples before drawing conclusions.
+- Keep platform data separate from curated business sources.
+- Document filters and output coverage in `summary.json`.
 
-- Recalcular metricas derivadas despues de agregar. No promediar `CTR` fila a fila.
-- Tratar `CTR` como porcentaje, no como proporcion decimal, salvo que el export real diga otra cosa.
-- Para comparativas, mostrar delta absoluto y delta relativo.
-- Senalar muestras pequenas antes de sacar conclusiones. Por ejemplo, alto CTR con pocos clicks puede ser ruido.
-- Si la pregunta requiere campos no presentes en el export por defecto, copiar el field config y extenderlo. No inventar respuestas.
-- Si el usuario pide datos canonicos de negocio y existe una fuente curada fuera de Skai, explicitar que estas respondiendo desde Skai platform data.
+## Skills Demonstrated
 
-Ver [analysis-playbook.md](./skai-skill/references/analysis-playbook.md) para formulas y patrones de analisis.
+`paid media analytics`  -  `Skai API`  -  `performance diagnostics`  -  `Python data exports`  -  `metric governance`  -  `data quality checks`  -  `business storytelling`
 
-## Outputs
+## Security
 
-El script genera:
-
-- `skai_report_records.csv` y/o `skai_report_records.json`
-- `summary.json`
-
-`skai_report_records` es la base analitica principal. `summary.json` documenta filtros aplicados, cobertura y columnas disponibles.
-
-## Deliverable
-
-Responder como un senior data analyst:
-
-- respuesta directa primero
-- evidencia cuantitativa despues
-- explicacion del metodo y filtros usados
-- caveats si falta algun campo, si hubo que excluir EXCLUDED_BRAND, o si el volumen es bajo
+This is a sanitized showcase repository. It contains no Skai credentials, account IDs, profile IDs, private exports, or proprietary campaign data.
