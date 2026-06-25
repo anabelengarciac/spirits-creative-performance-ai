@@ -7,7 +7,7 @@ El script usa el mismo modelo de acceso API que la skill `skai`.
 Orden de busqueda del `.env`:
 
 1. `--env-file`
-2. `skai-creative-performance-pipeline/.env`
+2. `spirits-creative-performance-ai/.env`
 3. `${CODEX_HOME:-$HOME/.codex}/skills/skai/.env`
 4. `.env` del directorio actual
 
@@ -34,7 +34,7 @@ python3 scripts/skai_report_export.py \
   --start-date 2026-04-01 \
   --end-date 2026-04-30 \
   --country ES \
-  --output-dir /tmp/skai-creative-performance-pipeline-es
+  --output-dir /tmp/spirits-creative-performance-ai-es
 ```
 
 ## Convenciones
@@ -62,7 +62,7 @@ python3 scripts/skai_report_export.py \
   --end-date 2026-04-30 \
   --country ES \
   --field-config /tmp/skai-fields.json \
-  --output-dir /tmp/skai-creative-performance-pipeline-es
+  --output-dir /tmp/spirits-creative-performance-ai-es
 ```
 
 ## Campos Adicionales
@@ -83,6 +83,6 @@ Puedes validar el flujo con el fixture ya existente de la otra skill:
 python3 scripts/skai_report_export.py \
   --start-date 2026-03-01 \
   --end-date 2026-03-31 \
-  --output-dir /tmp/skai-creative-performance-pipeline-sample \
+  --output-dir /tmp/spirits-creative-performance-ai-sample \
   --input-json ./skai/scripts/fixtures/sample_report.json
 ```

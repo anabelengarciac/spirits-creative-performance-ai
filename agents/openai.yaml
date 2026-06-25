@@ -1,4 +1,4 @@
 interface:
-  display_name: "Skai Creative Performance Pipeline"
+  display_name: "Spirits Creative Performance AI"
   short_description: "Build creative-performance datasets from Skai"
-  default_prompt: "Use $skai-creative-performance-pipeline to export, structure, and quality-check Skai data for creative performance analysis."
+  default_prompt: "Use $spirits-creative-performance-ai to export, structure, and quality-check Skai data for spirits creative performance analysis."

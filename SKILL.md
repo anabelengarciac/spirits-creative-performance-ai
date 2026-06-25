@@ -1,9 +1,9 @@
 ---
-name: skai-creative-performance-pipeline
+name: spirits-creative-performance-ai
 description: Export, structure, and quality-check Skai performance data for creative analytics. Use when Codex needs to build date- and country-specific datasets, compare periods, inspect campaigns, brands, channels, ads, drivers, outliers, and prepare analysis-ready CSV/JSON outputs. If no country is specified, assume USA.
 ---
 
-# Skai Creative Performance Pipeline
+# Spirits Creative Performance AI
 
 ## Overview
 
@@ -20,64 +20,64 @@ Use this skill to read Skai platform data and convert it into analysis-ready exp
 
 ## Quick Start
 
-Comando base:
+Base command:
 
 ```bash
 python3 scripts/skai_report_export.py \
   --start-date 2026-04-01 \
   --end-date 2026-04-30 \
   --country ES \
-  --output-dir /tmp/skai-creative-performance-pipeline-es
+  --output-dir /tmp/spirits-creative-performance-ai-es
 ```
 
-Para comparar periodos:
+To compare periods:
 
 ```bash
 python3 scripts/skai_report_export.py \
   --start-date 2026-04-01 \
   --end-date 2026-04-30 \
   --country ES \
-  --output-dir /tmp/skai-creative-performance-pipeline-current
+  --output-dir /tmp/spirits-creative-performance-ai-current
 
 python3 scripts/skai_report_export.py \
   --start-date 2026-03-01 \
   --end-date 2026-03-31 \
   --country ES \
-  --output-dir /tmp/skai-creative-performance-pipeline-prior
+  --output-dir /tmp/spirits-creative-performance-ai-prior
 ```
 
 If the analysis should follow the same exclusion convention as the `skai` enrichment skill, add `--exclude-brand`. If the analysis should keep only non-video creatives, add `--exclude-video`.
 
 ## Question Types
 
-Usar esta skill para preguntas como:
+Use this skill for questions such as:
 
-- que campaigns, brands o sources explican una caida de CTR
-- top ads o campaigns por volumen, clicks, conversions o CTR
-- comparativas entre paises, channels o brands dentro de un periodo
-- outliers con muchas impresiones y bajo CTR
-- chequeos de calidad, por ejemplo filas sin `Country`, `AdId` o `CampaignId`
-- enriquecimiento de una investigacion posterior con `ImageUrl` y metadata de creatividad
+- which campaigns, brands, or sources explain a CTR drop
+- top ads or campaigns by volume, clicks, conversions, or CTR
+- comparisons between countries, channels, or brands within a period
+- outliers with high impressions and low CTR
+- quality checks, for example rows without `Country`, `AdId`, or `CampaignId`
+- downstream enrichment with `ImageUrl` and creative metadata
 
 ## Analysis Rules
 
-- Recalcular metricas derivadas despues de agregar. No promediar `CTR` fila a fila.
-- Tratar `CTR` como porcentaje, no como proporcion decimal, salvo que el export real diga otra cosa.
-- Para comparativas, mostrar delta absoluto y delta relativo.
-- Senalar muestras pequenas antes de sacar conclusiones. Por ejemplo, alto CTR con pocos clicks puede ser ruido.
-- Si la pregunta requiere campos no presentes en el export por defecto, copiar el field config y extenderlo. No inventar respuestas.
-- Si el usuario pide datos canonicos de negocio y existe una fuente curada fuera de Skai, explicitar que estas respondiendo desde Skai platform data.
+- Recalculate derived metrics after aggregation. Do not average row-level `CTR`.
+- Treat `CTR` as a percentage unless the real export indicates otherwise.
+- For comparisons, show absolute and relative deltas.
+- Flag small samples before drawing conclusions. High CTR with few clicks may be noise.
+- If the question requires fields that are not in the default export, copy and extend the field config. Do not invent answers.
+- If the user asks for canonical business data and a curated source exists outside Skai, state clearly that the answer is based on Skai platform data.
 
 See [analysis-playbook.md](references/analysis-playbook.md) for formulas and analysis patterns.
 
 ## Outputs
 
-El script genera:
+The script generates:
 
-- `skai_report_records.csv` y/o `skai_report_records.json`
+- `skai_report_records.csv` and/or `skai_report_records.json`
 - `summary.json`
 
-`skai_report_records` es la base analitica principal. `summary.json` documenta filtros aplicados, cobertura y columnas disponibles.
+`skai_report_records` is the main analytical table. `summary.json` documents applied filters, coverage, and available columns.
 
 ## Deliverable
 

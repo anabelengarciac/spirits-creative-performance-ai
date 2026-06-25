@@ -1,4 +1,6 @@
-# Skai Creative Performance Pipeline
+# Spirits Creative Performance AI
+
+Data pipeline for AI-assisted creative-performance research in spirits advertising.
 
 ![Status](https://img.shields.io/badge/status-showcase_ready-2ea44f)
 ![Built for](https://img.shields.io/badge/built_for-final_degree_project-0969da)
