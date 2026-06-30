@@ -404,6 +404,8 @@ def filter_records(
 
     for record in records:
         record_profile_id = str(record.get("profile_id") or "").strip()
+        # Business rule: profile filters override country heuristics because the account
+        # structure is the stronger scoping signal when country fields are inconsistent.
         if allowed_profile_ids and record_profile_id not in allowed_profile_ids:
             continue
 
@@ -411,6 +413,8 @@ def filter_records(
         if not allowed_profile_ids and country_present and record_country != normalized_country:
             continue
 
+        # Business rule: excluded brand groups and video creatives can distort creative CTR
+        # comparisons, so the run summary keeps explicit counts for every row removed.
         if exclude_brand and is_excluded_brand_record(record):
             excluded_brand_rows += 1
             continue

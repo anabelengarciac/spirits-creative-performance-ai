@@ -1,23 +1,23 @@
-# Spirits Creative Performance AI
+# Creative Performance Data Pipeline
 
-Data pipeline for AI-assisted creative-performance research in spirits advertising.
+> Builds clean, comparable performance datasets so AI-assisted creative analysis starts from reliable campaign metrics instead of raw platform exports.
 
-![Status](https://img.shields.io/badge/status-showcase_ready-2ea44f)
-![Built for](https://img.shields.io/badge/built_for-final_degree_project-0969da)
+![Status](https://img.shields.io/badge/status-product_workflow-2ea44f)
+![Built for](https://img.shields.io/badge/context-final_degree_project-0969da)
 ![Domain](https://img.shields.io/badge/domain-paid_media_%2B_creative_analytics-6f42c1)
 ![Stack](https://img.shields.io/badge/stack-python_%7C_skai_api_%7C_csv_json-8250df)
 
-An AI-assisted data acquisition and performance reporting workflow built to collect, structure, and quality-check Skai advertising data for my Final Degree Project:
+An AI-assisted data acquisition and performance reporting workflow built to collect, structure, and quality-check advertising performance data for my Final Degree Project:
 
 > **"Analysis of advertising creatives in spirits through AI"**
 
-The project studied digital advertising creatives in the US spirits market, combining performance metrics with AI-generated visual variables to identify patterns associated with higher and lower CTR. This skill supported the data-engineering layer of that methodology: extracting Skai data by date range and country, organizing campaign/ad/creative metrics, preparing comparable datasets, and producing checks before the visual analysis stage.
+The project studied digital advertising creatives in the US spirits market, combining performance metrics with AI-generated visual variables to identify patterns associated with higher and lower CTR. This workflow supported the data-engineering layer of that methodology: extracting platform data by date range and country, organizing campaign/ad/creative metrics, preparing comparable datasets, and producing checks before the visual analysis stage.
 
-## Why It Matters
+## Product Impact
 
 My thesis required a dataset that was both analytically reliable and flexible enough to support creative-performance research. Raw platform data is not immediately suitable for that kind of analysis: fields differ by account, date ranges must be isolated, metrics need to be recalculated carefully, and suspicious or missing records must be surfaced before drawing conclusions.
 
-This skill turns that messy platform-data step into a repeatable workflow.
+This workflow turns that messy platform-data step into a repeatable process.
 
 | Research / business need | What the skill delivers |
 | --- | --- |
@@ -27,7 +27,7 @@ This skill turns that messy platform-data step into a repeatable workflow.
 | Avoid misleading performance conclusions | Quality checks for missing fields and suspicious records |
 | Prepare data for creative analysis | Structured CSV/JSON outputs ready for downstream enrichment |
 
-## Real Use Case: My TFG
+## Functional Flow
 
 The skill was used as part of a broader methodology to analyze the relationship between creative characteristics and advertising performance.
 
@@ -62,7 +62,7 @@ The final thesis dataset combined performance information with visual variables 
 
 ## What It Can Do
 
-- Export Skai performance data by date range and country.
+- Export performance data by date range and country.
 - Use configurable dimensions and metrics for account-specific schemas.
 - Generate current and prior-period datasets for comparison.
 - Filter video creatives or excluded brand groups when required.
@@ -70,7 +70,7 @@ The final thesis dataset combined performance information with visual variables 
 - Produce structured data quality checks for missing fields or suspicious records.
 - Generate CSV/JSON outputs that can feed later creative, campaign, or business analysis.
 
-## Analysis Flow
+## Workflow Detail
 
 ```mermaid
 flowchart TD
@@ -84,7 +84,7 @@ flowchart TD
     H --> I["Compare drivers, outliers, and period shifts"]
 ```
 
-## Repository Structure
+## Code And Installation
 
 ```text
 .
@@ -169,6 +169,6 @@ python3 scripts/skai_report_export.py \
 
 `paid media analytics` - `Skai API` - `performance diagnostics` - `Python data exports` - `research data preparation` - `metric governance` - `data quality checks` - `creative analytics`
 
-## Security
+## Public Scope
 
-This is a sanitized showcase repository. It contains no Skai credentials, account IDs, profile IDs, private exports, proprietary campaign data, or thesis datasets.
+This public version contains no platform credentials, account IDs, profile IDs, private exports, proprietary campaign data, or thesis datasets.

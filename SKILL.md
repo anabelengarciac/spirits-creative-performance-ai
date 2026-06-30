@@ -1,6 +1,6 @@
 ---
 name: spirits-creative-performance-ai
-description: Export, structure, and quality-check Skai performance data for creative analytics. Use when Codex needs to build date- and country-specific datasets, compare periods, inspect campaigns, brands, channels, ads, drivers, outliers, and prepare analysis-ready CSV/JSON outputs. If no country is specified, assume USA.
+description: Export, structure, and quality-check platform performance data for creative analytics. Use when an assistant needs to build date- and country-specific datasets, compare periods, inspect campaigns, brands, channels, ads, drivers, outliers, and prepare analysis-ready CSV/JSON outputs. If no country is specified, assume USA.
 ---
 
 # Spirits Creative Performance AI
